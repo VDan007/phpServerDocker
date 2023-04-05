@@ -5,7 +5,7 @@ services:
       - "8888:80"
     build: './build/php'
     volumes:
-      - ./app:/var/www/html
+      - .:/var/www/html
   mysql:
     ports:
       - "2222:3306"
