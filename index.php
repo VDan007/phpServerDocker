@@ -5,17 +5,16 @@ require'./functions.php';
 
 
 
-class Person {
-    public $name;
-    public $age;
-    public function breathe(){
-        echo $this->name . ' is breathing';
-    }
-}
 
-$person = new Person ();
 
-$person ->name = 'Jhon Doe';
-$person ->age = 25;
 
-dd($person->breathe());
+
+$dsn= "mysql:host=172.19.0.2;port=3306;dbname=myapp;charset=utf8";
+$pdo = new PDO($dsn ,'root','super-secret-password');
+
+$statement = $pdo->prepare("SELECT * from posts");
+$statement->execute();
+
+$post = $statement->fetchAll();
+
+dd($post);
