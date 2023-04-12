@@ -1,20 +1,17 @@
 <?php
-
+require './Database.php';
 require'./functions.php';
 //require './router.php';
 
 
 
 
+$db = new Database();
 
 
+$posts = $db->query("select * from posts where title >= 9")->fetchAll(PDO::FETCH_ASSOC);
 
-$dsn= "mysql:host=172.27.0.2;port=3306;dbname=myapp;charset=utf8";
-$pdo = new PDO($dsn ,'root','super-secret-password');
+foreach ($posts as $post){
+    echo "<li>" . $post['title'] . "</li>";
+}
 
-$statement = $pdo->prepare("SELECT * from posts");
-$statement->execute();
-
-$post = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-dd($post);
